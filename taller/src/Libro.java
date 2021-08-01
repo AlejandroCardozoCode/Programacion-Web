@@ -18,12 +18,22 @@ public class Libro {
         System.out.println("Titulo: " + this.titulo);
         System.out.println("Descripcion: " + this.descripcion);
         System.out.println("Precio: " + String.valueOf(this.precio));
-        System.out.println("Autor: " + this.autor);
         System.out.println("Año: " + this.anio);
+        System.out.println("Paginas: " + this.paginas);
     }
 
     public void imprimirLibro()
     {
         System.out.println("Titulo: " + this.titulo);
+    }
+
+    public Boolean esLibro(String nombreComparar)
+    {
+        return this.titulo.equals(nombreComparar);
+    }
+
+    public void paginas(int numeroPaginas)
+    {
+        this.paginas = numeroPaginas;
     }
 }

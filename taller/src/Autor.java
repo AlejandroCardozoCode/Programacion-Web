@@ -25,7 +25,10 @@ public class Autor {
             l.imprimirLibro();
         }
     }
-
+    public Boolean esAutor(String nombreComparar)
+    {
+        return this.nombre.equals(nombreComparar);
+    }
 
     @Override
     public boolean equals(Object o) {

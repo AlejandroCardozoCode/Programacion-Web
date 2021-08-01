@@ -29,6 +29,7 @@ public class Main {
                     imprimirAutores(arrayAutores);
                     break;
                 case 3:
+                    detallarLibro(arrayLibros);
                     break;
                 case 4:
                     print("Saliendo del sistema");
@@ -39,8 +40,34 @@ public class Main {
         }
     }
 
+    public static void detallarLibro(List<Libro> arrayLibros) 
+    {
+        Scanner input = new Scanner(System.in);
+        print("Ingrese el nombre del libro");
+        String nombreLibro = input.nextLine();
+
+        for(Libro l : arrayLibros)
+        {
+            if(l.esLibro(nombreLibro))
+            {
+                print("Ingrese el numero de paginas que se le van a asignar al libro");
+                int numeroPaginas = input.nextInt();
+                if(numeroPaginas < 0 || numeroPaginas >1500)
+                {
+                    print("Numero de paginas no valido, debe ser mayor a 0 y menor a 1500");
+                }
+                l.paginas(numeroPaginas);
+                l.imprimirLibroDetallado();
+                return;
+            }
+            print("El libro no se encuentra en la base de datos");
+        }
+    }
+
+
     public static void imprimirLibros(List<Libro> arrayLibros)
     {
+
         for(Libro libroActual: arrayLibros)
         {
             libroActual.imprimirLibro();
@@ -49,9 +76,19 @@ public class Main {
 
     public static void imprimirAutores(List<Autor> arrayAutores)
     {
+        Scanner input = new Scanner(System.in);
+        print("Ingrese el nombre del Artista");
+        String autor = input.nextLine();
+
         for(Autor actual: arrayAutores)
         {
-            actual.imprimirLibros();
+           if(actual.esAutor(autor)) 
+           {
+               actual.imprimirLibros();
+               return;
+           }
+           print("El Autor no existe en la base de datos");
+           return;
         }
     }
 

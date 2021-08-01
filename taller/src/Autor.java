@@ -1,28 +1,41 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class Autor {
     private String nombre;
-    Libro[] arrayLibros;
+    List<Libro> arrayLibroAutor;
 
 
-    public Autor(String nombre, Libro[] arrayLibros) {
+    public Autor(String nombre) {
         this.nombre = nombre;
-        this.arrayLibros = arrayLibros;
+        this.arrayLibroAutor = new ArrayList<Libro>();
     }
 
-    public String getNombre() {
-        return this.nombre;
+    public void agregarLibro(Libro libroAgregar)
+    {
+        this.arrayLibroAutor.add(libroAgregar);
+    }
+    
+    public void imprimirLibros()
+    {
+        System.out.println("-------" + this.nombre + "-------");
+        for(Libro l : this.arrayLibroAutor)
+        {
+            l.imprimirLibro();
+        }
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
-    public Libro[] getArrayLibros() {
-        return this.arrayLibros;
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Autor)) {
+            return false;
+        }
+        Autor autor = (Autor) o;
+        return Objects.equals(nombre, autor.nombre);
     }
-
-    public void setArrayLibros(Libro[] arrayLibros) {
-        this.arrayLibros = arrayLibros;
-    }
-
 }
 

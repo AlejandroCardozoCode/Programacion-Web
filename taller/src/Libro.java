@@ -1,3 +1,4 @@
+import java.util.Objects;
 public class Libro {
     private String titulo;
     private String descripcion;
@@ -36,4 +37,16 @@ public class Libro {
     {
         this.paginas = numeroPaginas;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Libro)) {
+            return false;
+        }
+        Libro libro = (Libro) o;
+        return Objects.equals(titulo, libro.titulo) && Objects.equals(autor, libro.autor) ;
+    }
+
 }

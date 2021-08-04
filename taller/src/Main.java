@@ -64,16 +64,6 @@ public class Main {
         }
     }
 
-
-    public static void imprimirLibros(List<Libro> arrayLibros)
-    {
-
-        for(Libro libroActual: arrayLibros)
-        {
-            libroActual.imprimirLibro();
-        }
-    }
-
     public static void imprimirAutores(List<Autor> arrayAutores)
     {
         Scanner input = new Scanner(System.in);
@@ -136,7 +126,7 @@ public class Main {
         String autor = autorN + " " + autorA;
 
         print("Ingrese el precio del libro");
-        int precio = input.nextInt();
+        double precio = input.nextDouble();
         if(precio < 10000)
         {
             print("El precio debe ser positivo y mayor a 10000");
@@ -150,9 +140,16 @@ public class Main {
             print("El año no es valido para el sistema");
             return;
         }
-        Libro libro = new Libro(titulo, descripcion, precio, autor,anio);
-        Autor autorC = new Autor(autor);
+        Libro libro = new Libro(titulo, descripcion, (int)precio, autor,anio);
+        int indiceLibro = arregloLibros.indexOf(libro);
+        if(indiceLibro != -1)
+        {
+            print("El libro ya se encuentra en la base de datos");
+            return;
+        }
         arregloLibros.add(libro);
+
+        Autor autorC = new Autor(autor);
         int indiceAutor = arregloAutores.indexOf(autorC);
         if(indiceAutor == -1)
         {
